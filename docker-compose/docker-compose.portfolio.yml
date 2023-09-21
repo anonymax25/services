@@ -1,0 +1,7 @@
+version: '3'
+services:
+  portfolio:
+    image: registry.anonymax.dev/portfolio:latest
+    restart: always
+    ports:
+      - "8888:80"

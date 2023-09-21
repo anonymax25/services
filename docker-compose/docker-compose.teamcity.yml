@@ -1,0 +1,21 @@
+version: "2.1"
+services:
+  server:
+    image: jetbrains/teamcity-server:latest
+    ports:
+      - "8111:8111"
+    volumes:
+      - TCdatadir:/data/teamcity_server/datadir
+      - TClogs:/opt/teamcity/logs
+    environment:
+      - TEAMCITY_HTTPS_PROXY_ENABLED=true
+  agent:
+    image: jetbrains/teamcity-agent:latest
+    volumes:
+      - TCagentConf:/data/teamcity_agent/conf
+    environment:
+      - SERVER_URL=http://server:8111
+volumes:
+  TCdatadir:
+  TClogs:
+  TCagentConf:
